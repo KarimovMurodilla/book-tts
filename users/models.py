@@ -4,4 +4,4 @@ from django.db import models
 
 # Create your models here.
 class CustomUser(AbstractUser):
-    phone_number = models.CharField("Telefon raqamlar", max_length=10)
+    phone_number = models.CharField("Phone number", max_length=10)

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Service Start -->
+
+    <div class="container-xxl py-5 my-5">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-6">Book-tts</h1>
+            <p class="text-primary fs-5 mb-5">Book text to speech</p>
+        </div>
+        <form action="{% url 'book' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container py-5">
+                <div>
+                    {% for field in form %}
+                        <label for="formFileLg" class="form-label">Upload the pdf file</label>
+                        <input type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" name="{{ field.html_name }}" class="form-control form-control-lg">
+                        {% if field.errors%}
+                            {% for error in field.errors %}
+                                <div class="text-danger">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+    <!-- Service End -->
+{% endblock content %}
